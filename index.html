@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Judo - Technical Fundamentals</title>
+    <meta name="description" content="List of all Judo techniques separated by category">
+
+    <style>
+        :root {
+            --background: #f4f6f8;
+            --surface: #ffffff;
+            --surface-soft: #f8fafc;
+            --text: #20242a;
+            --muted: #5d6773;
+            --primary: #9f1d20;
+            --primary-dark: #741316;
+            --border: #dce2e8;
+            --shadow: 0 12px 30px rgba(20, 28, 38, 0.08);
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--primary);
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        .site-header {
+            background:
+                linear-gradient(rgba(26, 12, 13, 0.76), rgba(26, 12, 13, 0.76)),
+                linear-gradient(135deg, #8f171b, #241416);
+            color: white;
+            padding: 56px 20px 42px;
+            text-align: center;
+        }
+
+        .site-header h1 {
+            margin: 0;
+            font-size: clamp(2rem, 6vw, 3.6rem);
+            line-height: 1.1;
+        }
+
+        .site-header p {
+            max-width: 760px;
+            margin: 16px auto 0;
+            color: rgba(255, 255, 255, 0.86);
+            font-size: 1.05rem;
+        }
+
+        .page-layout {
+            width: min(1180px, calc(100% - 32px));
+            margin: 28px auto 56px;
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 18px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 20px;
+        }
+
+        .sidebar h2 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+        }
+
+        .sidebar nav {
+            display: grid;
+            gap: 7px;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 9px 11px;
+            border-radius: 9px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .sidebar a:hover {
+            background: #f4e8e9;
+            color: var(--primary);
+        }
+
+        main {
+            min-width: 0;
+        }
+
+        .intro {
+            margin-bottom: 24px;
+            padding: 20px 22px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-left: 5px solid var(--primary);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .intro p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .content h3 {
+            margin: 42px 0 18px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--primary);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+        }
+
+        .content h3:first-child {
+            margin-top: 0;
+        }
+
+        .wp-block-table {
+            margin: 0 0 28px;
+            overflow-x: auto;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 650px;
+        }
+
+        th,
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            text-align: left;
+            font-size: 1.08rem;
+        }
+
+        th a {
+            color: white;
+        }
+
+        tr:last-child td {
+            border-bottom: 0;
+        }
+
+        tbody tr:nth-child(even) td {
+            background: var(--surface-soft);
+        }
+
+        td:first-child:not([colspan]) {
+            width: 62px;
+            text-align: center;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        td a {
+            font-weight: 750;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+        }
+
+        td.prohibited {
+            font-style: italic;
+        }
+
+        td.prohibited a {
+            color: blue;
+        }
+
+        td img {
+            display: block;
+            max-width: min(100%, 480px);
+            height: auto;
+            margin: 0 auto 10px;
+            border-radius: 12px;
+        }
+
+        [data-align="center"],
+        .has-text-align-center {
+            text-align: center;
+        }
+
+        .site-footer {
+            padding: 24px 20px;
+            background: #20242a;
+            color: #dbe1e7;
+            text-align: center;
+        }
+
+        .site-footer p {
+            margin: 0;
+        }
+
+        .back-to-top {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            width: 46px;
+            height: 46px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            box-shadow: var(--shadow);
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        @media (max-width: 900px) {
+            .page-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .sidebar nav {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 580px) {
+            .site-header {
+                padding: 42px 18px 34px;
+            }
+
+            .page-layout {
+                width: min(100% - 20px, 1180px);
+                margin-top: 18px;
+            }
+
+            .sidebar nav {
+                grid-template-columns: 1fr;
+            }
+
+            th,
+            td {
+                padding: 12px;
+            }
+
+            .back-to-top {
+                right: 12px;
+                bottom: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body id="top">
+
+<div class="page-layout">
+    <aside class="sidebar" aria-label="Navigation between categories">
+        <h2>Categories</h2>
+        <nav>
+            <a href="#Te-waza">Te-waza</a>
+            <a href="#Koshi-waza">Koshi-waza</a>
+            <a href="#Ashi-waza">Ashi-waza</a>
+            <a href="#Ma-sutemi-waza">Ma-sutemi-waza</a>
+            <a href="#Yoko-sutemi-waza">Yoko-sutemi-waza</a>
+            <a href="#Katame-Waza">Osaekomi-waza</a>
+            <a href="#Shime-waza">Shime-waza</a>
+            <a href="#Kansetsu-waza">Kansetsu-waza</a>
+        </nav>
+    </aside>
+
+    <main>
+        <article class="content">
+            <h3 class="wp-block-heading">Nage-waza (68 techniques)</h3>
+            <figure id="Te-waza" class="wp-block-table">
+                <table>
+                    <tbody>
+                    <tr>
+                        <th colspan="2">Te-waza (16 techniques)</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>
+                            <a href="https://youtu.be/zIq0xI0ogxk" target="_blank" rel="noreferrer noopener">Seoi-nage</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>
+                            <a href="https://youtu.be/FQnOlCxo4oI" target="_blank" rel="noreferrer noopener">Ippon-seoi-nage</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>
+                            <a href="https://youtu.be/vu1TMVNnq34" target="_blank" rel="noreferrer noopener">Seoi-otoshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>
+                            <a href="https://youtu.be/4x6S3Q-Ktv8" target="_blank" rel="noreferrer noopener">Tai-otoshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>
+                            <a href="https://youtu.be/cnHRhSy8yi4" target="_blank" rel="noreferrer noopener">Kata-guruma</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>
+                            <a href="https://youtu.be/vU6aJ2kFxoI" target="_blank" rel="noreferrer noopener">Sukui-nage</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>
+                            <a href="https://youtu.be/ff8U2TVZIYI" target="_blank" rel="noreferrer noopener">Obi-otoshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>
+                            <a href="https://youtu.be/6H5tmncOY4Q" target="_blank" rel="noreferrer noopener">Uki-otoshi</a>
+                       </td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>
+                            <a href="https://youtu.be/lLU9wv52ni0" target="_blank" rel="noreferrer noopener">Sumi-otoshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>
+                            <a href="https://youtu.be/MGlyKmSuzdc" target="_blank" rel="noreferrer noopener">Yama-arashi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>
+                            <a href="https://youtu.be/bpc82SrunUU" target="_blank" rel="noreferrer noopener">Obi-tori-gaeshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>
+                            <a href="https://youtu.be/BHLQS4K85bs" target="_blank" rel="noreferrer noopener">Morote-gari</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>
+                            <a href="https://youtu.be/ZNL47q1aJNY" target="_blank" rel="noreferrer noopener">Kuchiki-taoshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>
+                            <a href="https://youtu.be/tJylJYfBliA" target="_blank" rel="noreferrer noopener">Kibisu-gaeshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>
+                            <a href="https://youtu.be/V-RS3uhtVWM" target="_blank" rel="noreferrer noopener">Uchi-mata-sukashi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>
+                            <a href="https://youtu.be/_MWAdYi_LC4" target="_blank" rel="noreferrer noopener">Ko-uchi-gaeshi</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </figure>
+
+            <figure class="wp-block-table aligncenter" id="Koshi-waza">
+                <table>
+                    <tbody>
+                    <tr>
+                        <th colspan="2">Koshi-waza (10 techniques)</th>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">1</td>
+                        <td>
+                            <a href="https://youtu.be/bPKwtB4lyOQ" target="_blank" rel="noreferrer noopener">Uki-goshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">2</td>
+                        <td>
+                            <a href="https://youtu.be/yhu1mfy2vJ4" target="_blank" rel="noreferrer noopener">O-goshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">3</td>
+                        <td>
+                            <a href="https://youtu.be/SU7Id6uVJ44" target="_blank" rel="noreferrer noopener">Koshi-guruma</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">4</td>
+                        <td>
+                            <a href="https://youtu.be/McfzA0yRVt4" target="_blank" rel="noreferrer noopener">Tsurikomi-goshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">5</td>
+                        <td>
+                            <a href="https://youtu.be/QsmAxpmYLOI" target="_blank" rel="noreferrer noopener">Sode-tsurikomi-goshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">6</td>
+                        <td>
+                            <a href="https://youtu.be/qTo8HlAAkOo" target="_blank" rel="noreferrer noopener">Harai-goshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">7</td>
+                        <td>
+                            <a href="https://youtu.be/51Htlp7xEvE" target="_blank" rel="noreferrer noopener">Tsuri-goshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">8</td>
+                        <td>
+                            <a href="https://youtu.be/M9_7De6A1kk" target="_blank" rel="noreferrer noopener">Hane-goshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">9</td>
+                        <td>
+                            <a href="https://youtu.be/4pQd_bEnlf0" target="_blank" rel="noreferrer noopener">Utsuri-goshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">10</td>
+                        <td>
+                            <a href="https://youtu.be/ORIYstuxYT8" target="_blank" rel="noreferrer noopener">Ushiro-goshi</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </figure>
+
+            <figure id="Ashi-waza" class="wp-block-table">
+                <table>
+                    <tbody>
+                    <tr>
+                        <th colspan="2">Ashi-waza (21 techniques)</th>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">1</td>
+                        <td>
+                            <a href="https://youtu.be/4BUUvqxi_Kk" target="_blank" rel="noreferrer noopener">De-ashi-harai</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">2</td>
+                        <td>
+                            <a href="https://youtu.be/JPJx9-oAVns" target="_blank" rel="noreferrer noopener">Hiza-guruma</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">3</td>
+                        <td>
+                            <a href="http://kodokanjudoinstitute.org/en/waza/list/">Sasae-tsurikomi-ashi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">4</td>
+                        <td>
+                            <a href="https://www.youtube.com/watch?v=c-A_nP7mKAc" target="_blank" rel="noreferrer noopener">O-soto-gari</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">5</td>
+                        <td>
+                            <a href="https://youtu.be/0itJFhV9pDQ" target="_blank" rel="noreferrer noopener">O-uchi-gari</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">6</td>
+                        <td>
+                            <a href="https://youtu.be/jeQ541ScLB4" target="_blank" rel="noreferrer noopener">Ko-soto-gari</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">7</td>
+                        <td>
+                            <a href="https://youtu.be/3Jb3tZvr9Ng" target="_blank" rel="noreferrer noopener">Ko-uchi-gari</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">8</td>
+                        <td>
+                            <a href="https://youtu.be/nw1ZdRjrdRI" target="_blank" rel="noreferrer noopener">Okuri-ashi-harai</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">9</td>
+                        <td>
+                            <a href="https://youtu.be/iUpSu5J-bgw" target="_blank" rel="noreferrer noopener">Uchi-mata</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">10</td>
+                        <td>
+                            <a href="https://youtu.be/8b6kY4s4zH4" target="_blank" rel="noreferrer noopener">Ko-soto-gake</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">11</td>
+                        <td>
+                            <a href="https://youtu.be/ROeayhvom9U" target="_blank" rel="noreferrer noopener">Ashi-guruma</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">12</td>
+                        <td>
+                            <a href="https://youtu.be/gGPXvWL8VbE" target="_blank" rel="noreferrer noopener">Harai-tsurikomi-ashi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">13</td>
+                        <td>
+                            <a href="https://youtu.be/SnZciTAY9vc" target="_blank" rel="noreferrer noopener">O-guruma</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">14</td>
+                        <td>
+                            <a href="https://youtu.be/92KbCm6pQeI" target="_blank" rel="noreferrer noopener">O-soto-guruma</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">15</td>
+                        <td>
+                            <a href="https://youtu.be/2DsVvDw7b8g" target="_blank" rel="noreferrer noopener">O-soto-otoshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">16</td>
+                        <td>
+                            <a href="https://youtu.be/GwweWqqFB5g" target="_blank" rel="noreferrer noopener">Tsubame-gaeshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">17</td>
+                        <td>
+                            <a href="https://youtu.be/8ZjM3X_EANo" target="_blank" rel="noreferrer noopener">O-soto-gaeshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">18</td>
+                        <td>
+                            <a href="https://youtu.be/dCyZTXyjIXE" target="_blank" rel="noreferrer noopener">O-uchi-gaeshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">19</td>
+                        <td>
+                            <a href="https://youtu.be/9bZAZSBtnGs" target="_blank" rel="noreferrer noopener">Hane-goshi-gaeshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">20</td>
+                        <td>
+                            <a href="https://youtu.be/4U3It-7PPsc" target="_blank" rel="noreferrer noopener">Harai-goshi-gaeshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">21</td>
+                        <td>
+                            <a href="https://youtu.be/Sy6sLWxkWYw" target="_blank" rel="noreferrer noopener">Uchi-mata-gaeshi</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </figure>
+
+            <figure id="Ma-sutemi-waza" class="wp-block-table">
+                <table>
+                    <tbody>
+                    <tr>
+                        <th colspan="2">Ma-sutemi-waza&nbsp;(5 techniques)</th>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">1</td>
+                        <td>
+                            <a href="https://youtu.be/880WbHvHv6A" target="_blank" rel="noreferrer noopener">Tomoe-nage</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">2</td>
+                        <td>
+                            <a href="https://youtu.be/5VhduA5xkbA" target="_blank" rel="noreferrer noopener">Sumi-gaeshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">3</td>
+                        <td>
+                            <a href="https://youtu.be/92zUYWBp5N8" target="_blank" rel="noreferrer noopener">Hikikomi-gaeshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">4</td>
+                        <td>
+                            <a href="https://youtu.be/TmTWgrmViZc" target="_blank" rel="noreferrer noopener">Tawara-gaeshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">5</td>
+                        <td>
+                            <a href="https://youtu.be/Fgi9b8DJ5sQ" target="_blank" rel="noreferrer noopener">Ura-nage</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </figure>
+
+            <figure id="Yoko-sutemi-waza" class="wp-block-table">
+                <table>
+                    <tbody>
+                    <tr>
+                        <th colspan="2">Yoko-sutemi-waza (16 techniques)</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>
+                            <a href="https://youtu.be/MnNG67pF_a0" target="_blank" rel="noreferrer noopener">Yoko-otoshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>
+                            <a href="https://youtu.be/3b9Me3Fohpk" target="_blank" rel="noreferrer noopener">Tani-otoshi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>
+                            <a href="https://youtu.be/6CRBGLGz9j8" target="_blank" rel="noreferrer noopener">Hane-makikomi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>
+                            <a href="https://youtu.be/bWG9O1BVKtQ" target="_blank" rel="noreferrer noopener">Soto-makikomi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>
+                            <a href="https://youtu.be/5BowcjduxVc" target="_blank" rel="noreferrer noopener">Uchi-makikomi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>
+                            <a href="https://youtu.be/weVOpJ63gII" target="_blank" rel="noreferrer noopener">Uki-waza</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>
+                            <a href="https://youtu.be/bp1tscHlePI" target="_blank" rel="noreferrer noopener">Yoko-wakare</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>
+                            <a href="https://youtu.be/MehP6I5cY2c" target="_blank" rel="noreferrer noopener">Yoko-guruma</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>
+                            <a href="https://youtu.be/tP1Sj1uDfSo" target="_blank" rel="noreferrer noopener">Yoko-gake</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>
+                            <a href="https://youtu.be/Hr0cOMGBDYo" target="_blank" rel="noreferrer noopener">Daki-wakare</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>
+                            <a href="https://youtu.be/DGDv2oMwmas" target="_blank" rel="noreferrer noopener">O-soto-makikomi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>
+                            <a href="https://youtu.be/jZXENTLpJCI" target="_blank" rel="noreferrer noopener">Uchi-mata-makikomi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>
+                            <a href="https://youtu.be/VBaHzKaCXss" target="_blank" rel="noreferrer noopener">Harai-makikomi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>
+                            <a href="https://youtu.be/_1eygIXLD_w" target="_blank" rel="noreferrer noopener">Ko-uchi-makikomi</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td class="prohibited">
+                            <a href="https://youtu.be/OR-HGHnarYc" target="_blank" rel="noreferrer noopener">Kani-basami</a> (prohibited)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td class="prohibited">
+                            <a href="https://youtu.be/w6G57bWACi0" target="_blank" rel="noreferrer noopener">Kawazu-gake</a> (prohibited)
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </figure>
+            <h3 class="wp-block-heading" id="Katame-Waza">Katame-Waza (36 techniques)</h3>
+            <figure class="wp-block-table">
+                <table>
+                    <tbody>
+                    <tr>
+                        <th colspan="2">Osaekomi-waza&nbsp;(11 techniques)</th>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">1</td>
+                        <td>
+                            <a href="https://youtu.be/NDaQuJOFBYk" target="_blank" rel="noreferrer noopener">Kesa-gatame</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">2</td>
+                        <td>
+                            <a href="https://youtu.be/Q2fb9jaoUFQ" target="_blank" rel="noreferrer noopener">Kuzure-kesa-gatame</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">3</td>
+                        <td>
+                            <a href="https://youtu.be/k9MYaHbYqnQ" target="_blank" rel="noreferrer noopener">Makura-kesa-gatame</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">4</td>
+                        <td>
+                            <a href="https://youtu.be/SBapox2M2dE" target="_blank" rel="noreferrer noopener">Ushiro-kesa-gatame</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">5</td>
+                        <td>
+                            <a href="https://youtu.be/zQR3IOXxO_Q" target="_blank" rel="noreferrer noopener">Kata-gatame</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">6</td>
+                        <td>
+                            <a href="https://youtu.be/HFuMjOv0WN8" target="_blank" rel="noreferrer noopener">Kami-shiho-gatame</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">7</td>
+                        <td>
+                            <a href="https://youtu.be/YUrogQWdwiY" target="_blank" rel="noreferrer noopener">Kuzure-kami-shiho-gatame</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">8</td>
+                        <td>
+                            <a href="https://youtu.be/TT7XJVSEQxA" target="_blank" rel="noreferrer noopener">Yoko-shiho-gatame</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">9</td>
+                        <td>
+                            <a href="https://youtu.be/55-rFmBx53g" target="_blank" rel="noreferrer noopener">Tate-shiho-gatame</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">10</td>
+                        <td>
+                            <a href="https://youtu.be/e_lAjik1SUM" target="_blank" rel="noreferrer noopener">Uki-gatame</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">11</td>
+                        <td>
+                            <a href="https://youtu.be/eeAHZB0v3XY" target="_blank" rel="noreferrer noopener">Ura-gatame</a>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </figure>
+
+            <figure id="Shime-waza" class="wp-block-table">
+                <table>
+                    <tbody>
+                    <tr>
+                        <th colspan="2">Shime-waza&nbsp;(15 techniques)</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>
+                            <a href="https://youtu.be/k2cHry9HByQ" target="_blank" rel="noreferrer noopener">Nami-juji-jime</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>
+                            <a href="https://youtu.be/t3tQriIPdlI" target="_blank" rel="noreferrer noopener">Gyaku-juji-jime</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>
+                            <a href="https://youtu.be/3VZVUAmiMD8" target="_blank" rel="noreferrer noopener">Kata-juji-jime</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>
+                            <a href="https://youtu.be/9f0n8jez7iA" target="_blank" rel="noreferrer noopener">Hadaka-jime</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>
+                            <a href="https://youtu.be/EiqyoVcIAi8" target="_blank" rel="noreferrer noopener">Okuri-eri-jime</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>
+                            <a href="https://youtu.be/yaTGgRjnwB8" target="_blank" rel="noreferrer noopener">Kataha-jime</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>
+                            <a href="https://youtu.be/cHeIs-fSqwE" target="_blank" rel="noreferrer noopener">Katate-jime</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>
+                            <a href="https://youtu.be/-RHC4V7TQiY" target="_blank" rel="noreferrer noopener">Ryote-jime</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>
+                            <a href="https://youtu.be/E3nvQzClcAU" target="_blank" rel="noreferrer noopener">Sode-guruma-jime</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>
+                            <a href="https://youtu.be/dKKpnD3eLcY" target="_blank" rel="noreferrer noopener">Tsukkomi-jime</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td><a href="https://youtu.be/lq1CUBRAm7s" target="_blank" rel="noreferrer noopener">Mae-sankaku-jime</a></td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td><a href="https://youtu.be/hd3rgSGoFco" target="_blank" rel="noreferrer noopener">Yoko-sankaku-jime</a></td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td><a href="https://youtu.be/cY5mXhf_hMg" target="_blank" rel="noreferrer noopener">Ushiro-sankaku-jime</a></td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td><a href="https://youtu.be/5kHjF5OkwMs" target="_blank" rel="noreferrer noopener">Jigoku-jime</a></td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td class="prohibited"><a href="https://youtu.be/D_0fFcoIbvY" target="_blank" rel="noreferrer noopener">Do-jime</a> (prohibited)</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </figure>
+
+            <figure id="Kansetsu-waza" class="wp-block-table">
+                <table>
+                    <tbody>
+                    <tr>
+                        <th colspan="2">Kansetsu-waza&nbsp;(10 techniques)</th>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">1</td>
+                        <td><a href="https://youtu.be/AIlTvZb4RlE" target="_blank" rel="noreferrer noopener">Ude-garami</a></td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">2</td>
+                        <td><a href="https://youtu.be/OWgSOlCuMXw" target="_blank" rel="noreferrer noopener">Ude-hishigi-juji-gatame</a></td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">3</td>
+                        <td><a href="https://youtu.be/SBf0aTma1VI" target="_blank" rel="noreferrer noopener">Ude-hishigi-ude-gatame</a></td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">4</td>
+                        <td><a href="https://youtu.be/H2HtAJdiJcE" target="_blank" rel="noreferrer noopener">Ude-hishigi-hiza-gatame</a></td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">5</td>
+                        <td><a href="https://youtu.be/8F5p1zuJRG0" target="_blank" rel="noreferrer noopener">Ude-hishigi-waki-gatame</a></td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">6</td>
+                        <td><a href="https://youtu.be/ZzEycg8R_9M" target="_blank" rel="noreferrer noopener">Ude-hishigi-hara-gatame</a></td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">7</td>
+                        <td><a href="https://youtu.be/ClY7g_pX-4s" target="_blank" rel="noreferrer noopener">Ude-hishigi-ashi-gatame</a></td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">8</td>
+                        <td><a href="https://youtu.be/6DnvhY0tQVM" target="_blank" rel="noreferrer noopener">Ude-hishigi-te-gatame</a></td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">9</td>
+                        <td><a href="https://youtu.be/WefAmW4azhk" target="_blank" rel="noreferrer noopener">Ude-hishigi-sankaku-gatame</a></td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-align-center" data-align="center">10</td>
+                        <td class="prohibited"><a href="https://youtu.be/BWWb0GoAtZw" target="_blank" rel="noreferrer noopener">Ashi-garami</a> (prohibited)</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </figure>
+        </article>
+    </main>
+</div>
+
+<a class="back-to-top" href="#top" aria-label="Back to top">↑</a>
+</body>
+</html>
